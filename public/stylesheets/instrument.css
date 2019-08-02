@@ -1,0 +1,33 @@
+#keys {
+    width: 550px;
+    padding: 3px;
+    text-align: center;
+}
+
+#key, #sharpkey {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    direction: ltr;
+    margin: 0;
+    padding: 0;
+}
+
+#key {
+    width: 24px;
+    height: 100px;
+    background-color: white;
+    z-index: 1;
+    border-radius: 2px;
+    border: 1px #222 solid;
+    cursor: pointer;
+}
+
+#sharpkey {
+    width: 16px;
+    height: 70px;
+    left: -10px;
+    background-color: black;
+    z-index: 2;
+    cursor: pointer;
+}
