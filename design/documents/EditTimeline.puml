@@ -1,0 +1,24 @@
+@startuml
+actor Jo
+actor Morgan
+boundary Projects
+boundary VisualTimeline
+
+DataSource -> User: Show projects
+Jo -> Projects: Select project
+
+alt project exists
+
+   alt actor == Morgan
+      Morgan -> VisualTimeline: Select Session
+   end
+
+   Jo <- VisualTimeline: Shows Edit Options
+   Jo -> VisualTimeline: Make Edits
+   VisualTimeline -> VisualTimeline: Stores Edits
+   User -> VisualTimeline: Plays Timeline
+   VisualTimeline -> Component: Run Edited Timeline
+else project does not exist
+   Projects -> Jo: Show failure
+end
+@enduml

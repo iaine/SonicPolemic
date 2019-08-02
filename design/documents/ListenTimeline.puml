@@ -1,0 +1,10 @@
+@startuml
+actor Sam
+
+boundary Projects
+boundary Timeline
+Sam -> Projects: Select project
+
+Sam -> Timeline: Plays Timeline
+Timeline -> Component: Run Timeline
+@enduml

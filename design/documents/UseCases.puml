@@ -1,0 +1,9 @@
+@startuml
+(Listen to Timeline) as (Use)
+(Edit timeline) as (Use1)
+(Edit project) as (Use2)
+
+User --> (Use)
+User --> (Use1)
+User --> (Use2)
+@enduml
