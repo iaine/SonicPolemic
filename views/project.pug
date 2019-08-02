@@ -1,0 +1,68 @@
+extends layout
+
+block content
+    h1= title
+
+    canvas(id='myCanvas')
+    ul
+        li(id='annote',onmouseover='stopFilter()')= "Stop"
+        each variable in variables
+            li(id='annote',onmouseover='setFilter("' + variable + '")')= variable
+
+    form(method='POST' action='/project/' + title)
+        p='OK'
+        |          x:
+        input(type='text', id='OKx', name='x', value='')
+        |          y:
+        input(type='text', id='OKy', name='y', value='')
+        |          z:
+        input(type='text', id='OKz', name='z', value='')
+        |          sound:
+        input(type='text', id='OKwave', name='wave', value='sine')
+        |          sound:
+        input(type='text', id='OKnote', name='note', value='261.25')
+
+        p='REF'
+        |          x:
+        input(type='text', id='REFx', name='x', value='')
+        |          y:
+        input(type='text', id='REFy', name='y', value='')
+        |          z:
+        input(type='text', id='REFz', name='z', value='')
+        |          sound:
+        input(type='text', id='REFwave', name='wave', value='sine')
+        |          sound:
+        input(type='text', id='REFnote', name='note', value='261.25')
+        p='Q'
+        |          x:
+        input(type='text', id='Qx', name='x', value='')
+        |          y:
+        input(type='text', id='Qy', name='y', value='')
+        |          z:
+        input(type='text', id='Qz', name='z', value='')
+        |          sound:
+        input(type='text', id='Qwave', name='wave', value='sine')
+        |          sound:
+        input(type='text', id='Qnote', name='note', value='261.25')
+        p='KO'
+        |          x:
+        input(type='text', id='KOx', name='x', value='')
+        |          y:
+        input(type='text', id='KOy', name='y', value='')
+        |          z:
+        input(type='text', id='KOz', name='z', value='')
+        |          sound:
+        input(type='text', id='KOwave', name='wave', value='sine')
+        |          sound:
+        input(type='text', id='KOnote', name='note', value='261.25')
+        |
+        input(class='button', type='submit', value='Submit')
+
+    button(class='button',onclick="getData('enmi185.json    ')") Run
+
+    script(src='/javascripts/sound.js')
+    script(src='/javascripts/playground.js')
+    script(src='/javascripts/position.js')
+    script.
+        coord= JSON.parse('!{coords}');
+        mark_image(coord);

@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    h1= title
+    div(id='button', onclick='compile()')='Run'
+    div(class="slidecontainer")
+        input(type="range" min="1" max="1000000" value="10000" class="slider" id="myRange")
+        p(id='demo')
+
+    div(id="piano")
+    div(id='toolbox', ondrop='drop(event)', ondragover='allowDrop(event)')="ToolBox"
+        div(class='toolboxdescription')='Design'
+        div(id='box', draggable='true', class="filter", ondragstart='drag(event)' data-function='filter' data-value='293.66', data-polemic='OK')='OK'
+            select(id="z", name="zvalue")
+                each variable in [0, 150, 300, 450, 600, 750, 900]
+                    option(value=variable) #{variable}
+            input(type="text" id="myInput", onclick='createKeyboard("piano", "myInput", "box")')
+        div(id='box1', draggable='true', class="filter", ondragstart='drag(event)' data-function='filter' data-value='220.00', data-polemic='KO')='KO'
+            select(id="z1", name="zvalue1")
+                    each variable in [0, 150, 300, 450, 600, 750, 900]
+                        option(value=variable) #{variable}
+            input(type="text" id="myInput1" oninput="updateFreq('box1', 'myInput1')")
+        div(id='box2', draggable='true', class="filter", ondragstart='drag(event)' data-function='filter' data-value='329.63', data-polemic='Q')='Q'
+            select(id="z2", name="zvalue2")
+                each variable in [0, 150, 300, 450, 600, 750, 900]
+                    option(value=variable) #{variable}
+            input(type="text" id="myInput2" oninput="updateFreq('box2', 'myInput2')")
+        div(id='box3', draggable='true', class="filter", ondragstart='drag(event)' data-function='filter' data-value='261.63', data-polemic='REF')='REF'
+            select(id="z3", name="zvalue3")
+                each variable in [0, 150, 300, 450, 600, 750, 900]
+                    option(value=variable) #{variable}
+            input(type="text" id="myInput3" oninput="updateFreq('box3', 'myInput3')")
+        div(class='toolboxdescription')='Functions'
+            div(id='timelineFunc', draggable='true', class="function", ondragstart='drag(event)' data-value='timeline' data-function='pipeline')='Timeline'
+        //div(class='toolboxdescription')='Sounds'
+            div(id='envelope', draggable='true', class="sound", ondragstart='drag(event)' data-function='sound', data-value='envelope')='Sound'
+
+    div(id='editor', ondrop='drop(event)', ondragover='allowDrop(event)')='Mixer'
+
+    script(src='/javascripts/drag.js')
+    script(src='/javascripts/position.js')
+    script(src='/javascripts/playground.js')
+    script(src='/javascripts/sound.js')
+    script(src='/javascripts/keyboard.js')
+
+    script.
+        setSource('!{datasource}');

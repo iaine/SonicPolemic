@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1= title
+
+    div(id='toolbox', onclick='getNotationData("./data/enmi185.json")')="Timeline is here"
+
+    script(src='/javascripts/sound.js')
+    script(src='/javascripts/plaintime.js')
