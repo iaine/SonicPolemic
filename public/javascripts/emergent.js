@@ -3,7 +3,7 @@
  */
 
 /**
- * Interface for the emergent.
+ * Interface for the reciprocal links.
  * Should be called once.
  *
  * Assumes that the data has the same structure as the normal data
@@ -52,4 +52,25 @@ let emergent = function (data) {
  */
 let findAnnotation = function (operator, notation) {
     return notation.split(operator)[0];
+};
+
+/**
+ * Get the link density of a particular term
+ * @param dataSet
+ * @param term
+ */
+let linkDensity = (dataSet, term) => {
+    let allLinks = 0;
+    //get the terms
+    const localSet = dataSet.filter( d => {
+        allLinks++;
+        if ( d["polemic"].indexOf(term) > -1){ return d}
+    });
+
+    localSet.forEach(ls => {
+        let total = 0;
+        localSet.filter(l => {if (l === ls) { total++ } });
+        console.log(total / allLinks);
+        //@todo: make into a note
+    });
 };
