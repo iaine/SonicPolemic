@@ -17,10 +17,11 @@ let emergent = function (data) {
     let speakers = new Set();
 
     //set of the annotations
-    let annotators = new Set();
+    let annotators = {};
 
     //list to hold an object with name and a count
-    let linkcounts = [];
+    let linkCounts = {};
+    let counts = 0;
 
     data.forEach(datum => {
         const op = ':';
@@ -35,8 +36,16 @@ let emergent = function (data) {
             let notetaker = findAnnotation(op, datum['description']);
             //annotators.add(notetaker);
 
-            //simple count of appearances of the author
-            annotators[notetaker]++;
+            /*
+              Simple count of all appearances
+              satisfies l
+             */
+            counts++;
+
+            //ignore the self referential links.
+            if (speakers.indexOf(notetaker) < 0) {
+                linkCounts[notetaker]++;
+            }
         }
 
     });
@@ -61,11 +70,19 @@ let findAnnotation = function (operator, notation) {
  */
 let linkDensity = (dataSet, term) => {
     let allLinks = 0;
-    //get the terms
-    const localSet = dataSet.filter( d => {
-        allLinks++;
-        if ( d["polemic"].indexOf(term) > -1){ return d}
-    });
+
+    function getAllCounts() {
+        //get the terms
+        const localSet = dataSet.filter(d => {
+            allLinks++;
+            if (d["polemic"].indexOf(term) > -1) {
+                return d
+            }
+        });
+        return localSet;
+    }
+
+    const localSet = getAllCounts();
 
     localSet.forEach(ls => {
         let total = 0;
