@@ -90,7 +90,7 @@ function setCoordinates(divId, containerId, x, y) {
  * @param z - the z axis
  */
 function setData(id, value, x, y, z) {
-    envelope[id] = {value: parseFloat(value), x:x, y:y, z: parseInt(z)};
+    envelope[id] = {freq: parseFloat(value), x:x, y:y, z: parseInt(z)};
 }
 
 /**
@@ -212,6 +212,6 @@ var createDraggableBox = function(parentDiv, divName, divId, inputId) {
  */
 function compile() {
 //needs to run the timeline.
-    getData(envelope.source, envelope.pipeline.value);
+    getData(envelope.source, timeline);
 }
 
