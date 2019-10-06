@@ -11,7 +11,7 @@ var Note = function() {
     var threeDimension = function (audioContext, sound, pos, id, play) {
 
         if (pos.z == null) pos.z = play.z;
-        console.log(pos);
+
         this.context = audioContext;
 
         let listener = this.context.listener;
