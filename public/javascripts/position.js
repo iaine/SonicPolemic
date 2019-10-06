@@ -88,6 +88,7 @@ let soundNotes = function (dtype, play, id) {
 
     //this test if there is data. Better to check the key higher up?
     if (pos) {
+        console.log(pos);
         const sound = {freq: pos.freq, volume: 0.5, dur: 0.5};
         note.threeDimension(audioCtx, sound, pos,id, play);
     } else {
@@ -99,7 +100,6 @@ let soundNotes = function (dtype, play, id) {
 
 function timeline(myJson) {
     var play = new Playground();
-    console.log(play);
 
     //const earlyDate = myJson[0].time;
     JSON.parse(myJson).forEach(my => {
@@ -139,7 +139,8 @@ var getData = function (url, sonification) {
             return response.json();
         })
         .then(function(myJson) {
-            self[sonification](myJson);
+            console.log(sonification);
+            sonification(myJson);
         });
 };
 
